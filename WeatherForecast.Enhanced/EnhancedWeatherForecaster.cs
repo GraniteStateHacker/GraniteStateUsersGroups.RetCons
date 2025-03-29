@@ -5,10 +5,7 @@ using GraniteStateUsersGroups.RetCons;
 
 namespace WeatherForecast.Enhanced;
 
-
-[RetCon(typeof(IWeatherForecaster), 
-    ArrangerKey = "Environmental", 
-    ArrangerArguments = ["Development"])]
+[RetCon.ForEnvironment(typeof(IWeatherForecaster), "Development")]
 public class EnhancedWeatherForecaster : IWeatherForecaster
 {
     private IDistributedCache _cache;
