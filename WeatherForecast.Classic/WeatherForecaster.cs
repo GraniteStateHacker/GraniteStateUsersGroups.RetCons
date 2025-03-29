@@ -5,7 +5,7 @@ using WeatherForecast.Abstractions.Interfaces;
 namespace WeatherForecast.Classic;
 
 
-[RetCon(typeof(IWeatherForecaster))]
+[RetCon.Default(typeof(IWeatherForecaster))]
 public class WeatherForecaster : IWeatherForecaster
 {
     public WeatherForecaster()
