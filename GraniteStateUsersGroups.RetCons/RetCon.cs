@@ -22,6 +22,8 @@ public static partial class RetCon
 
         public uint Priority { get; init; } = 0;
 
+        public object[]? Parameters { get; init; }
+
         public abstract void Register(IServiceCollection services, Type implementationType);
 
         public abstract bool ChooseThisImplementation();
@@ -91,11 +93,11 @@ public static partial class RetCon
     }
 
     [AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = true)]
-    public class ForEnvironment : RetConBaseAttribute
+    public class ForEnvironmentAttribute : RetConBaseAttribute
     {
         public string EnvironmentName { get; init; }
 
-        public ForEnvironment(Type @for, string environmentName) : base(@for)
+        public ForEnvironmentAttribute(Type @for, string environmentName) : base(@for)
         {
             EnvironmentName = environmentName;
             Priority = 1;

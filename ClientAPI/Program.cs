@@ -12,6 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Add RetCon configuration logic
 builder.AddRetConTargetServices(RetConDiscoveryLevel.RequireSignedAssemblies);
 
 var app = builder.Build();
@@ -26,12 +27,11 @@ var app = builder.Build();
 
 app.UseHttpsRedirection();
 
+// Use RetCon post-build configuration logic
 app.UseRetConTargetServices();
 
 app.MapGet("/weatherforecast", ([FromServices] IWeatherForecaster forecaster) => forecaster.Forecast())
 .WithName("GetWeatherForecast")
 .WithOpenApi();
-
-app.MapGet("/weatherforecast/{zipcode}", ([FromServices] IWeatherForecaster forecaster, string zipcode) => forecaster.ForecastForZipCode(zipcode));
 
 app.Run();
