@@ -2,8 +2,6 @@ using GraniteStateUsersGroups.RetCons;
 using GraniteStateUsersGroups.RetCons.Web;
 using Microsoft.AspNetCore.Mvc;
 using WeatherForecast.Abstractions.Interfaces;
-using WeatherForecast.Classic;
-using WeatherForecast.Enhanced;
 
 var builder = WebApplication.CreateBuilder(args);
 
