@@ -80,13 +80,11 @@ Add the RetCon library to your project by referencing the `GraniteStateUsersGrou
              public void Configure(WebApplicationBuilder builder, RetCon.RetConBaseAttribute attribute, IConfiguration configuration, ILogger logger)
              {
                  logger.LogInformation("Configuring MyService with attribute {Attribute}", attribute);
-                 builder.Services.AddSingleton<IMyService, MyServiceImplementation>();
              }
 
              public void PostBuildConfig(IApplicationBuilder app, RetCon.RetConBaseAttribute attribute, IConfiguration? configuration, ILogger logger)
              {
                  logger.LogInformation("Post-build configuration for MyService with attribute {Attribute}", attribute);
-                 app.UseMiddleware<MyServiceMiddleware>();
              }
          }
      }
