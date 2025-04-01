@@ -147,7 +147,7 @@ Please review our contribution guidelines (to be written) before submitting.
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](https://github.com/GraniteStateUsersGroups/RetCon/blob/main/LICENSE) file for details.
+This project is licensed under the MIT License. See the [LICENSE](https://github.com/GraniteStateUsersGroups/RetCon/blob/main/LICENSE.txt) file for details.
 
 ## Acknowledgments
 
