@@ -68,29 +68,12 @@ Add the RetCon library to your project by referencing the `GraniteStateUsersGrou
 
    RetCon calls methods in these interfaces on subclasses of the actively selected implementation classes. Here’s how to use them:
 
-   - **Singular Subclass Implementing Both Interfaces**:
-
-     ```csharp
-     public class MyService : ISelfConfig, ISelfConfigAfterBuild
-     {
-         public void Configure(WebApplicationBuilder builder, RetCon.RetConBaseAttribute attribute, IConfiguration configuration, ILogger logger)
-         {
-             logger.LogInformation("Configuring MyService with attribute {Attribute}", attribute);
-             builder.Services.AddSingleton<IMyService, MyServiceImplementation>();
-         }
-
-         public void PostBuildConfig(IApplicationBuilder app, RetCon.RetConBaseAttribute attribute, IConfiguration? configuration, ILogger logger)
-         {
-             logger.LogInformation("Post-build configuration for MyService with attribute {Attribute}", attribute);
-             app.UseMiddleware<MyServiceMiddleware>();
-         }
-     }
-     ```
-
+  
    - **Configuration Subclass Contained Within the Service Class**:
 
      ```csharp
-     public class MyService
+     [RetCon.Default(typeof(IMyServiceInterface)]
+     public class MyService : IMyServiceInterface
      {
          public class MyServiceConfig : ISelfConfig
          {
