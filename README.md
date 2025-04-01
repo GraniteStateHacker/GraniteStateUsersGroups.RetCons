@@ -126,13 +126,13 @@ Comprehensive documentation is planned but not yet available. A wiki will be cre
 
 The following tasks are still pending:
 
-- Comprehensive documentation needs to be written.
-- Unit tests need to be implemented.
-- A continuous integration pipeline needs to be built.
-- A contribution guide needs to be written.
-- NuGet packages for `GraniteStateUsersGroups.RetCons` and `GraniteStateUsersGroups.RetCons.Web` need to be created and published. (These packages do not exist yet.)
-- A deployment pipeline needs to be built to publish releases to nuget.org.
-- The implementation for `RetConDiscoveryLevel.RequireSignedAssemblies` needs to be added to the discovery process.
+- Comprehensive documentation needs to be written. [#9](https://github.com/GraniteStateHacker/GraniteStateUsersGroups.RetCons/issues/9)
+- Unit tests need to be implemented. [#7](https://github.com/GraniteStateHacker/GraniteStateUsersGroups.RetCons/issues/7)
+- A continuous integration pipeline needs to be built. [#6](https://github.com/GraniteStateHacker/GraniteStateUsersGroups.RetCons/issues/6)
+- A contribution guide needs to be written. [8](https://github.com/GraniteStateHacker/GraniteStateUsersGroups.RetCons/issues/8)
+- A publishing pipeline needs to be built to publish releases to nuget.org. (Depends on [#6](https://github.com/GraniteStateHacker/GraniteStateUsersGroups.RetCons/issues/6)) [#10](https://github.com/GraniteStateHacker/GraniteStateUsersGroups.RetCons/issues/10)
+- The implementation for `RetConDiscoveryLevel.RequireSignedAssemblies` needs to be added to the discovery process.  [#5](https://github.com/GraniteStateHacker/GraniteStateUsersGroups.RetCons/issues/5)
+- Consider targets for other platforms (WinUI, MAUI, Azure Functions, et al) [#11](https://github.com/GraniteStateHacker/GraniteStateUsersGroups.RetCons/issues/11)
 
 ## Contributing
 
