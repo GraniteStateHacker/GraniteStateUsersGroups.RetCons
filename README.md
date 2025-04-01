@@ -75,17 +75,14 @@ Add the RetCon library to your project by referencing the `GraniteStateUsersGrou
      [RetCon.Default(typeof(IMyServiceInterface)]
      public class MyService : IMyServiceInterface
      {
-         public class MyServiceConfig : ISelfConfig
+         public class MyServiceConfig : ISelfConfig, ISelfConfigAfterBuild
          {
              public void Configure(WebApplicationBuilder builder, RetCon.RetConBaseAttribute attribute, IConfiguration configuration, ILogger logger)
              {
                  logger.LogInformation("Configuring MyService with attribute {Attribute}", attribute);
                  builder.Services.AddSingleton<IMyService, MyServiceImplementation>();
              }
-         }
 
-         public class MyServicePostConfig : ISelfConfigAfterBuild
-         {
              public void PostBuildConfig(IApplicationBuilder app, RetCon.RetConBaseAttribute attribute, IConfiguration? configuration, ILogger logger)
              {
                  logger.LogInformation("Post-build configuration for MyService with attribute {Attribute}", attribute);
