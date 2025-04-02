@@ -1,6 +1,7 @@
 # RetCons: Retroactive Continuity for .NET
 
-The RetCons library is a lightweight but powerful .NET utility designed to simplify and enhance dependency injection by allowing developers to retroactively define and manage service implementations. Inspired by the concept of retroactive continuity in storytelling, RetCons enables dynamic and flexible service registration using attributes.
+The RetCons library is a lightweight but powerful .NET utility designed to simplify and enhance dependency injection by allowing developers to retroactively define and manage service implementations. Inspired by the concept of retroactive continuity in storytelling, RetCons enables dynamic and flexible service registration using attributes. It promotes SOLID Principles and Clean Architecture to the extent of being able to completely decouple dependencies right out of your build pipeline and compose them at runtime instead.
+
 ## Features
 
 - **Attribute-Based Service Registration**: Use attributes to define and manage service implementations for interfaces.
