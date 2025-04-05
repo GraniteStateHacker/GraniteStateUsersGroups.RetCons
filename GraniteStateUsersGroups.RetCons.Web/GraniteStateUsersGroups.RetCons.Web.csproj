@@ -5,17 +5,32 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Authors>GraniteStateHacker, Granite State Users Groups</Authors>
+    <Authors>GraniteStateHacker</Authors>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Title>RetCons 2024 Web</Title>
-    <PackageIcon>RetCons package icon.png</PackageIcon>
+    <PackageIcon>RetCons Library Icon.jpg</PackageIcon>
+    <NoWarn>$(NoWarn);NETSDK1086</NoWarn>
+    <IsPackable>True</IsPackable>
+    <Company>Granite State Users Groups, LLC</Company>
+    <Description>RetCons Library adapter for ASP.NET 8.</Description>
+    <Copyright>(c) 2025</Copyright>
+    <PackageProjectUrl>https://github.com/GraniteStateHacker/GraniteStateUsersGroups.RetCons</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/GraniteStateHacker/GraniteStateUsersGroups.RetCons</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>Dependency Injection; Retroactive Continuity; SOLID Principles; Clean Architecture; Service Composition; Dynamic Registration; Modular Design; Kubernetes-Friendly; Aspire.NET; Runtime Configuration; Flexible Implementations; Attribute-Based DI; .NET Utilities; Microservices Alternative; Decoupled Dependencies</PackageTags>
+    <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
   </PropertyGroup>
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\RetCons package icon.png">
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\Media\RetCons Library Icon.jpg">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>

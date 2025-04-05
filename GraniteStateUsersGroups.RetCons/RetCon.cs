@@ -9,23 +9,18 @@ namespace GraniteStateUsersGroups.RetCons;
 
 public static partial class RetCon
 {
+
+
     public static RegistrationContext Context { get; } = [];
 
     public abstract class RetConBaseAttribute(Type @for) : Attribute
     {
-
         public Type For { get; init; } = @for;
-
         public ServiceLifetime Lifetime { get; init; } = ServiceLifetime.Transient;
-
         public object? ServiceKey { get; init; }
-
-        public uint Priority { get; init; } = 0;
-
+        public uint Priority { get; init; }
         public object[]? Parameters { get; init; }
-
         public abstract void Register(IServiceCollection services, Type implementationType);
-
         public abstract bool ChooseThisImplementation();
     }
 
@@ -45,11 +40,9 @@ public static partial class RetCon
         }
     }
 
-
     [AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = true)]
     public class ForceAttribute : RetConBaseAttribute
     {
-
         public ForceAttribute(Type @for) : base(@for)
         {
             Priority = uint.MaxValue;
@@ -62,9 +55,7 @@ public static partial class RetCon
         }
 
         public override bool ChooseThisImplementation() => true;
-        
     }
-
 
     [AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = true)]
     public class WhenConfiguredAttribute : RetConBaseAttribute
@@ -76,7 +67,6 @@ public static partial class RetCon
             RequiredConfigurationKey = requiredConfigurationKey;
             Priority = 1;
         }
-
 
         public override void Register(IServiceCollection services, Type implementationType)
         {
@@ -103,7 +93,6 @@ public static partial class RetCon
             Priority = 1;
         }
 
-
         public override void Register(IServiceCollection services, Type implementationType)
         {
             var serviceDescriptor = new ServiceDescriptor(For, ServiceKey, implementationType, Lifetime);
@@ -117,8 +106,6 @@ public static partial class RetCon
         }
     }
 
-
-
     public static void GetRetConImplementations(this IEnumerable<Assembly> searchAssemblies,
                                                    Action<RetConBaseAttribute, Type> callbackInterfaceForImplementation)
     {
@@ -127,7 +114,7 @@ public static partial class RetCon
         var logger = Context.Logger!;
         foreach (var anAssembly in searchAssemblies)
         {
-            logger.Log(RetConComposer.LogLevel, "RetCon: found qualified assembly {fullname}.", anAssembly.FullName);
+            _logFoundQualifiedAssembly(logger, anAssembly.FullName!, null);
             foreach (var aClass in anAssembly.GetTypes().Where(t => t.IsClass && t.IsPublic))
             {
                 foreach (var anAttribute in aClass.GetCustomAttributes<RetConBaseAttribute>(inherit: false))
@@ -137,5 +124,11 @@ public static partial class RetCon
             }
         }
     }
+
+    private static readonly Action<ILogger, string, Exception?> _logFoundQualifiedAssembly =
+        LoggerMessage.Define<string>(
+            RetConComposer.LogLevel,
+            new EventId(0, nameof(RetCon)),
+            "RetCon: found qualified assembly '{FullName}'.");
 }
 
