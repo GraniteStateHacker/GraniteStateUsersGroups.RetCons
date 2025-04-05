@@ -15,8 +15,6 @@ public static class RetConComposer
 
     private static LogLevel GetDefaultLogLevel() => LogLevel.Information;
 
-    internal static readonly LogLevel _LogLevel = LogLevel.Debug;
-   
     public const string RetConServiceKey = "RetConServiceKey";
 
     public static IHostApplicationBuilder RegisterRetConServices(this IHostApplicationBuilder builder, RetConDiscoveryLevel discoveryLevel)
@@ -27,8 +25,6 @@ public static class RetConComposer
         InitializeRetCons(discoveryLevel);
         return builder;
     }
-
-
 
     private static void RegisterBaseServices()
     {
@@ -42,29 +38,26 @@ public static class RetConComposer
             .CreateLogger(typeof(RetCon.RetConBaseAttribute));
     }
 
-    private static void InitializeRetCons( RetConDiscoveryLevel discoveryLevel)
+    private static void InitializeRetCons(RetConDiscoveryLevel discoveryLevel)
     {
         try
         {
             var builder = RetCon.Context.Builder;
-            RetCon.Context.Logger!.Log(_LogLevel, "RetCon: {libname} started.", nameof(InitializeRetCons));
+            LogRetConStarted(RetCon.Context.Logger!, null);
             DiscoverRetCons(discoveryLevel);
             RegisterSelectedRetCons();
         }
         catch (Exception ex)
         {
-            RetCon.Context.Logger!.Log(LogLevel.Error, ex, "RetCon: {libname} failed with exceptions (see details).", nameof(InitializeRetCons));
+            LogRetConFailed(RetCon.Context.Logger!, ex);
         }
-        RetCon.Context.Logger!.Log(_LogLevel, "RetCon: {libname} complete.", nameof(InitializeRetCons));
+        LogRetConComplete(RetCon.Context.Logger!, null);
     }
-
-
 
     private static void RegisterSelectedRetCons()
     {
         foreach (var set in RetCon.Context)
         {
-
             RegisterRetCon(set);
         }
     }
@@ -74,8 +67,8 @@ public static class RetConComposer
         var configuration = RetCon.Context.ConfigurationBuilder!.Build();
         var logger = RetCon.Context.Logger;
         var fileSearchPattern = configuration!["ImplementationAssemblySearch"] ?? "*.dll";
-        var rootAssembly = Assembly.GetEntryAssembly() ?? throw new NullReferenceException();
-        var exeFolder = new DirectoryInfo(rootAssembly.Location)?.Parent ?? throw new NullReferenceException();
+        var rootAssembly = Assembly.GetEntryAssembly() ?? throw new InvalidOperationException("Entry assembly cannot be null.");
+        var exeFolder = new DirectoryInfo(rootAssembly.Location)?.Parent ?? throw new InvalidOperationException("Parent directory cannot be null.");
 
         var fileSearchFolder = configuration["ImplementationAssemblyFolder"] ?? exeFolder.FullName;
 
@@ -88,10 +81,9 @@ public static class RetConComposer
         var targetInterface = theAttribute.For;
 
         var keyPair = new RetConSet(targetInterface, theAttribute, theTargetImplementation);
-        
+
         RetCon.Context.Add(keyPair);
     }
-
 
     private static void RegisterRetCon(RetConSet set)
     {
@@ -108,25 +100,71 @@ public static class RetConComposer
         {
             attribute.Register(container, targetImplementation);
             RetCon.Context.RegisteredRetCons.Add(new RetConSet(set.Interface, attribute, targetImplementation));
-            logger.Log(_LogLevel, "RetCon: {retconName} added ({implementationName}) as implementation for interface '{interfaceName}' with lifetime '{serviceLifetime}').", attribute.GetType().Name, implementationName, interfaceName, serviceLifetime);
+            LogRetConAdded(logger, attribute.GetType().Name, implementationName, interfaceName, serviceLifetime, null);
         }
     }
+
+    private static readonly Action<ILogger, string, string?, string?, ServiceLifetime, Exception?> LogRetConAdded =
+        LoggerMessage.Define<string, string?, string?, ServiceLifetime>(
+            LogLevel.Information,
+            new EventId(0, nameof(RegisterRetCon)),
+            "RetCon: {RetconName} added ({ImplementationName}) as implementation for interface '{InterfaceName}' with lifetime '{ServiceLifetime}')."
+        );
+
+    private static readonly Action<ILogger, Exception?> LogRetConStarted =
+        LoggerMessage.Define(
+            LogLevel.Information,
+            new EventId(1, nameof(InitializeRetCons)),
+            "RetCon: InitializeRetCons started."
+        );
+
+    private static readonly Action<ILogger, Exception?> LogRetConFailed =
+        LoggerMessage.Define(
+            LogLevel.Error,
+            new EventId(2, nameof(InitializeRetCons)),
+            "RetCon: InitializeRetCons failed with exceptions (see details)."
+        );
+
+    private static readonly Action<ILogger, Exception?> LogRetConComplete =
+        LoggerMessage.Define(
+            LogLevel.Information,
+            new EventId(3, nameof(InitializeRetCons)),
+            "RetCon: InitializeRetCons complete."
+        );
+
+    private static readonly Action<ILogger, string, string, Exception?> LogScanningAssemblies =
+        LoggerMessage.Define<string, string>(
+            LogLevel.Information,
+            new EventId(4, nameof(GetAssembliesThatReferenceType)),
+            "RetCon: Scanning for assemblies matching \"{FullName}\\{FileSearchPattern}\"."
+        );
+
+    private static readonly Action<ILogger, string, string, Exception?> LogExaminingLibraries =
+        LoggerMessage.Define<string, string>(
+            LogLevel.Information,
+            new EventId(5, nameof(GetAssembliesThatReferenceType)),
+            "RetCon: Examining matched libraries for assemblies with references to {FullName}: {LibNames}."
+        );
+
+    private static readonly Action<ILogger, string, string, Exception?> LogSkippingAssembly =
+        LoggerMessage.Define<string, string>(
+            LogLevel.Information,
+            new EventId(6, nameof(GetAssembliesThatReferenceType)),
+            "RetCon: '{AssemblyName}' does not appear to be a compatible assembly. Skipping. {Message}"
+        );
 
     private static IEnumerable<Assembly> GetAssembliesThatReferenceType(Type referencedType, ILogger logger, string searchFolder, string fileSearchPattern, RetConDiscoveryLevel discoveryLevel)
     {
         var keyAssembly = Assembly.GetAssembly(referencedType) ?? throw new ArgumentOutOfRangeException(nameof(referencedType), "referencedType must be ");
-        var searchFolderDir = //get Directory from string
-            new DirectoryInfo(searchFolder) ?? throw new ArgumentOutOfRangeException(nameof(searchFolder), "searchFolder must be a valid directory path.");
-        logger.Log(_LogLevel, "RetCon: Scanning for assemblies matching \"{fullName}\\{fileSearchPattern}\".", searchFolder, fileSearchPattern);
+        var searchFolderDir = new DirectoryInfo(searchFolder) ?? throw new ArgumentOutOfRangeException(nameof(searchFolder), "searchFolder must be a valid directory path.");
+        LogScanningAssemblies(logger, searchFolder, fileSearchPattern, null);
 
         var localLibFileNames = fileSearchPattern.Split(";")
             .SelectMany(pattern => searchFolderDir.GetFiles(pattern))
             .Distinct()
-            .Where(name =>   //trim out files that will never be valid
-                //!name.Name.ToLower().StartsWith("microsoft.") &&
-                !name.Name.StartsWith("system.", comparisonType: StringComparison.InvariantCultureIgnoreCase));
+            .Where(name => !name.Name.StartsWith("system.", StringComparison.InvariantCultureIgnoreCase));
 
-        logger.Log(_LogLevel, "RetCon: Examining matched libraries for assemblies with references to {FullName}: {libNames}.", keyAssembly.FullName, string.Join(";", localLibFileNames.Select(lib => lib.Name)));
+        LogExaminingLibraries(logger, keyAssembly.FullName!, string.Join(";", localLibFileNames.Select(lib => lib.Name)), null);
         var allAssembliesInBinFolder = localLibFileNames
             .Select(anAssembly =>
             {
@@ -141,7 +179,7 @@ public static class RetConComposer
                 }
                 catch (Exception ex)
                 {
-                    logger.Log(_LogLevel, "RetCon: '{assemblyName}' does not appear to be a compatible assembly. Skipping. {message}", anAssembly.FullName, ex.Message);
+                    LogSkippingAssembly(logger, anAssembly.FullName, ex.Message, null);
                 }
                 return result;
             });
@@ -162,5 +200,4 @@ public static class RetConComposer
 
         return false;
     }
-
 }

@@ -4,7 +4,35 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Title>RetCons Library Core Functionality</Title>
+    <Authors>GraniteStateHacker</Authors>
+    <Company>Granite State Users Groups, LLC</Company>
+    <Product>The RetCons Library</Product>
+    <Description>Dependency Injection Configuration Framework, .NET Core edition</Description>
+    <Copyright>(C) 2025</Copyright>
+    <PackageProjectUrl>https://github.com/GraniteStateHacker/GraniteStateUsersGroups.RetCons</PackageProjectUrl>
+    <PackageIcon>RetCons Library Icon.jpg</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/GraniteStateHacker/GraniteStateUsersGroups.RetCons</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>Dependency Injection; Retroactive Continuity; SOLID Principles; Clean Architecture; Service Composition; Dynamic Registration; Modular Design; Kubernetes-Friendly; Aspire.NET; Runtime Configuration; Flexible Implementations; Attribute-Based DI; .NET Utilities; Microservices Alternative; Decoupled Dependencies</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+    <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+    <AnalysisLevel>6.0-recommended</AnalysisLevel>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\Media\RetCons Library Icon.jpg">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="9.0.0" />
