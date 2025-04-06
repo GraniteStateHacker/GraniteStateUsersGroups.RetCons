@@ -104,54 +104,7 @@ public static class RetConComposer
         }
     }
 
-    private static readonly Action<ILogger, string, string?, string?, ServiceLifetime, Exception?> LogRetConAdded =
-        LoggerMessage.Define<string, string?, string?, ServiceLifetime>(
-            LogLevel.Information,
-            new EventId(0, nameof(RegisterRetCon)),
-            "RetCon: {RetconName} added ({ImplementationName}) as implementation for interface '{InterfaceName}' with lifetime '{ServiceLifetime}')."
-        );
 
-    private static readonly Action<ILogger, Exception?> LogRetConStarted =
-        LoggerMessage.Define(
-            LogLevel.Information,
-            new EventId(1, nameof(InitializeRetCons)),
-            "RetCon: InitializeRetCons started."
-        );
-
-    private static readonly Action<ILogger, Exception?> LogRetConFailed =
-        LoggerMessage.Define(
-            LogLevel.Error,
-            new EventId(2, nameof(InitializeRetCons)),
-            "RetCon: InitializeRetCons failed with exceptions (see details)."
-        );
-
-    private static readonly Action<ILogger, Exception?> LogRetConComplete =
-        LoggerMessage.Define(
-            LogLevel.Information,
-            new EventId(3, nameof(InitializeRetCons)),
-            "RetCon: InitializeRetCons complete."
-        );
-
-    private static readonly Action<ILogger, string, string, Exception?> LogScanningAssemblies =
-        LoggerMessage.Define<string, string>(
-            LogLevel.Information,
-            new EventId(4, nameof(GetAssembliesThatReferenceType)),
-            "RetCon: Scanning for assemblies matching \"{FullName}\\{FileSearchPattern}\"."
-        );
-
-    private static readonly Action<ILogger, string, string, Exception?> LogExaminingLibraries =
-        LoggerMessage.Define<string, string>(
-            LogLevel.Information,
-            new EventId(5, nameof(GetAssembliesThatReferenceType)),
-            "RetCon: Examining matched libraries for assemblies with references to {FullName}: {LibNames}."
-        );
-
-    private static readonly Action<ILogger, string, string, Exception?> LogSkippingAssembly =
-        LoggerMessage.Define<string, string>(
-            LogLevel.Information,
-            new EventId(6, nameof(GetAssembliesThatReferenceType)),
-            "RetCon: '{AssemblyName}' does not appear to be a compatible assembly. Skipping. {Message}"
-        );
 
     private static IEnumerable<Assembly> GetAssembliesThatReferenceType(Type referencedType, ILogger logger, string searchFolder, string fileSearchPattern, RetConDiscoveryLevel discoveryLevel)
     {
@@ -200,4 +153,53 @@ public static class RetConComposer
 
         return false;
     }
+
+    private static readonly Action<ILogger, string, string?, string?, ServiceLifetime, Exception?> LogRetConAdded =
+    LoggerMessage.Define<string, string?, string?, ServiceLifetime>(
+        LogLevel.Information,
+        new EventId(0, nameof(RegisterRetCon)),
+        "RetCon: {RetconName} added ({ImplementationName}) as implementation for interface '{InterfaceName}' with lifetime '{ServiceLifetime}')."
+    );
+
+    private static readonly Action<ILogger, Exception?> LogRetConStarted =
+        LoggerMessage.Define(
+            LogLevel.Information,
+            new EventId(1, nameof(InitializeRetCons)),
+            "RetCon: InitializeRetCons started."
+        );
+
+    private static readonly Action<ILogger, Exception?> LogRetConFailed =
+        LoggerMessage.Define(
+            LogLevel.Error,
+            new EventId(2, nameof(InitializeRetCons)),
+            "RetCon: InitializeRetCons failed with exceptions (see details)."
+        );
+
+    private static readonly Action<ILogger, Exception?> LogRetConComplete =
+        LoggerMessage.Define(
+            LogLevel.Information,
+            new EventId(3, nameof(InitializeRetCons)),
+            "RetCon: InitializeRetCons complete."
+        );
+
+    private static readonly Action<ILogger, string, string, Exception?> LogScanningAssemblies =
+        LoggerMessage.Define<string, string>(
+            LogLevel.Information,
+            new EventId(4, nameof(GetAssembliesThatReferenceType)),
+            "RetCon: Scanning for assemblies matching \"{FullName}\\{FileSearchPattern}\"."
+        );
+
+    private static readonly Action<ILogger, string, string, Exception?> LogExaminingLibraries =
+        LoggerMessage.Define<string, string>(
+            LogLevel.Information,
+            new EventId(5, nameof(GetAssembliesThatReferenceType)),
+            "RetCon: Examining matched libraries for assemblies with references to {FullName}: {LibNames}."
+        );
+
+    private static readonly Action<ILogger, string, string, Exception?> LogSkippingAssembly =
+        LoggerMessage.Define<string, string>(
+            LogLevel.Information,
+            new EventId(6, nameof(GetAssembliesThatReferenceType)),
+            "RetCon: '{AssemblyName}' does not appear to be a compatible assembly. Skipping. {Message}"
+        );
 }
