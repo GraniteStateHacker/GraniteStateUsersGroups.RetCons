@@ -10,6 +10,7 @@ The RetCons library is a lightweight but powerful .NET utility designed to simpl
 - **Configuration-Driven Implementations**: Dynamically register services based on configuration settings.
 - **Extensible and Modular**: Easily extend the library to meet your specific needs.
 - **Kubernetes-Friendly Composition**: Complement Kubernetes-based platforms with "module-lithic" services as an alternative to microservices.
+- **Extensible Discovery Strategy Mechanism**: Customize the discovery and registration process using strategies.
 
 ## Why RetCon?
 
@@ -30,7 +31,6 @@ Add the RetCon library to your project by referencing the `GraniteStateUsersGrou
 ### Usage
 
 1. **Define Your Interface and Implementation**:
-
    ```csharp
    public interface IExampleService
    {
@@ -43,7 +43,6 @@ Add the RetCon library to your project by referencing the `GraniteStateUsersGrou
        public void Execute() => Console.WriteLine("Default Implementation");
    }
    ```
-
 2. **Register and Initialize Services**:
 
    Use the following methods in your `Program.cs` file to discover and register service implementations and initialize activated services:
@@ -61,8 +60,7 @@ Add the RetCon library to your project by referencing the `GraniteStateUsersGrou
 
    app.Run();
    ```
-
-   - `AddRetConTargetServices`: Discovers and registers service implementations dynamically based on the RetCon attributes.
+- `AddRetConTargetServices`: Discovers and registers service implementations dynamically based on the RetCon attributes.
    - `UseRetConTargetServices`: Initializes the activated services after the application has been built.
 
 3. **Use `ISelfConfig` and `ISelfConfigAfterBuild` Interfaces**:
@@ -71,6 +69,7 @@ Add the RetCon library to your project by referencing the `GraniteStateUsersGrou
 
   
    - **Configuration Subclass Contained Within the Service Class**:
+These examples illustrate how to use `ISelfConfig` and `ISelfConfigAfterBuild` to inject custom logic during the application’s configuration and post-build phases.
 
      ```csharp
      [RetCon.Default(typeof(IMyServiceInterface)]
@@ -93,6 +92,7 @@ Add the RetCon library to your project by referencing the `GraniteStateUsersGrou
 
    These examples illustrate how to use `ISelfConfig` and `ISelfConfigAfterBuild` to inject custom logic during the application’s configuration and post-build phases.
 
+RetCon provides an extensible strategy mechanism to customize the discovery and registration process. You can implement your own strategy by implementing delegate `RetConDiscoveryStrategy` and registering it:
 ### Example Projects
 
 This repository includes sample projects demonstrating how to use RetCon attributes in real-world scenarios. Explore the samples to see how RetCon can simplify your dependency injection setup.
