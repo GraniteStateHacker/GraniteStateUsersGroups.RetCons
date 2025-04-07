@@ -11,7 +11,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // Add RetCon configuration logic
-builder.AddRetConTargetServices(RetConDiscoveryLevel.RequireSignedAssemblies);
+builder.AddRetConTargetServices(RetConDiscoveryLevel.AllowUnsignedAssemblies);
 
 var app = builder.Build();
 
