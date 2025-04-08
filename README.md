@@ -26,7 +26,7 @@ This makes RetCon an excellent choice for applications that require flexibility,
 
 ### Installation
 
-Add the RetCon library to your project by referencing the `GraniteStateUsersGroups.RetCons` package. You can also include the `GraniteStateUsersGroups.RetCons.Web` package for web-specific functionality.  (NuGet packages yet to be produced.)
+Add the RetCons.Web library to your ASP.NET project by referencing the `GraniteStateUsersGroups.RetCons.Web` package. (Support for other .NET-based platforms such as WinUI and MAUI coming soon)
 
 ### Usage
 
