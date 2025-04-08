@@ -136,5 +136,7 @@ RetCon is developed and maintained by the Granite State Users Groups. Special th
 Start redefining your dependency injection story with RetCon today!
 
 ## Change Log
+
 1.0.0 - Initial Release
+
 1.0.1 - Implement assembly discovery strategy that demands signed assemblies.
