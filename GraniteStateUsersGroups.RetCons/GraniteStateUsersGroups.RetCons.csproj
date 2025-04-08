@@ -10,7 +10,7 @@
     <Company>Granite State Users Groups, LLC</Company>
     <Product>The RetCons Library</Product>
     <Description>Dependency Injection Configuration Framework, .NET Core edition</Description>
-    <Copyright>(C) 2025</Copyright>
+    <Copyright>(C) 2025 Granite State Users Groups, LLC</Copyright>
     <PackageProjectUrl>https://github.com/GraniteStateHacker/GraniteStateUsersGroups.RetCons</PackageProjectUrl>
     <PackageIcon>RetCons Library Icon.jpg</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
@@ -21,6 +21,7 @@
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
     <AnalysisLevel>6.0-recommended</AnalysisLevel>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>

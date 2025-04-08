@@ -1,5 +1,4 @@
-﻿using GraniteStateUsersGroups.RetCons;
-using GraniteStateUsersGroups.RetCons.Web;
+﻿using GraniteStateUsersGroups.RetCons.Web;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Caching.StackExchangeRedis;
@@ -9,10 +8,10 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
 
-namespace WeatherForecast.Enhanced;
+namespace GraniteStateUsersGroups.RetCons.Cache.Redis;
 
 
-[RetCon.WhenConfigured(typeof(IDistributedCache), "RedisCache", ServiceKey = "VolatileCache")]
+[RetCon.WhenConfigured(typeof(IDistributedCache), "RedisCache")]
 public class RedisCacheForRetCons(IOptions<RedisCacheOptions> optionsAccessor) : RedisCache(optionsAccessor)
 {
     public class Configurator : ISelfConfig

@@ -1,7 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
-using System.Reflection;
-using System.Reflection.Metadata;
+﻿using System.Reflection;
 
 namespace GraniteStateUsersGroups.RetCons.Web;
 public static class ConfigurationExtensions

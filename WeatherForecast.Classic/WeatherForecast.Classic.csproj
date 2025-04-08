@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GraniteStateUsersGroups.RetCons.Web\GraniteStateUsersGroups.RetCons.Web.csproj" />
     <ProjectReference Include="..\GraniteStateUsersGroups.RetCons\GraniteStateUsersGroups.RetCons.csproj" />
     <ProjectReference Include="..\WeatherForecast.Abstractions\WeatherForecast.Abstractions.csproj" />
   </ItemGroup>
