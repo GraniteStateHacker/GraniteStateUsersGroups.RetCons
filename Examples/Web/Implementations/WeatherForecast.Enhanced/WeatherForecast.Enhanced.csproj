@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\RetCons\Implementations\GraniteStateUsersGroups.RetCons.Cache.MemoryCache\GraniteStateUsersGroups.RetCons.Cache.MemoryCache.csproj" />
+    <ProjectReference Include="..\..\..\..\RetCons\Source\GraniteStateUsersGroups.RetCons.Web\GraniteStateUsersGroups.RetCons.Web.csproj" />
+    <ProjectReference Include="..\..\..\..\RetCons\Source\GraniteStateUsersGroups.RetCons\GraniteStateUsersGroups.RetCons.csproj" />
+    <ProjectReference Include="..\..\WeatherForecast.Abstractions\WeatherForecast.Abstractions.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -12,10 +12,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GraniteStateUsersGroups.RetCons.Web\GraniteStateUsersGroups.RetCons.Web.csproj" />
+    <ProjectReference Include="..\..\..\RetCons\Source\GraniteStateUsersGroups.RetCons.Web\GraniteStateUsersGroups.RetCons.Web.csproj" />
+    <ProjectReference Include="..\Implementations\WeatherForecast.Classic\WeatherForecast.Classic.csproj" />
+    <ProjectReference Include="..\Implementations\WeatherForecast.Enhanced\WeatherForecast.Enhanced.csproj" />
     <ProjectReference Include="..\WeatherForecast.Abstractions\WeatherForecast.Abstractions.csproj" />
-    <ProjectReference Include="..\WeatherForecast.Classic\WeatherForecast.Classic.csproj" />
-    <ProjectReference Include="..\WeatherForecast.Enhanced\WeatherForecast.Enhanced.csproj" />
   </ItemGroup>
 
 </Project>
