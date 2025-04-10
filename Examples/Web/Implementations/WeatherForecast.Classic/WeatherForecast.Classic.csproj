@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GraniteStateUsersGroups.RetCons\GraniteStateUsersGroups.RetCons.csproj" />
-    <ProjectReference Include="..\WeatherForecast.Abstractions\WeatherForecast.Abstractions.csproj" />
+    <ProjectReference Include="..\..\..\..\RetCons\Source\GraniteStateUsersGroups.RetCons\GraniteStateUsersGroups.RetCons.csproj" />
+    <ProjectReference Include="..\..\WeatherForecast.Abstractions\WeatherForecast.Abstractions.csproj" />
   </ItemGroup>
 
 </Project>

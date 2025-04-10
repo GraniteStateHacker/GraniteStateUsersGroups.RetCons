@@ -27,11 +27,11 @@
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\README.md">
+    <None Include="..\..\..\README.md">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
-    <None Include="..\Media\RetCons Library Icon.jpg">
+    <None Include="..\..\Media\RetCons Library Icon.jpg">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
