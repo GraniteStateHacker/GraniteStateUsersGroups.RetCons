@@ -10,7 +10,8 @@ The RetCons library is a lightweight but powerful .NET utility designed to simpl
 - **Configuration-Driven Implementations**: Dynamically register services based on configuration settings.
 - **Extensible and Modular**: Easily extend the library to meet your specific needs.
 - **Kubernetes-Friendly Composition**: Complement Kubernetes-based platforms with "module-lithic" services as an alternative to microservices.
-- **Extensible Discovery Strategy Mechanism**: Customize the discovery and registration process using strategies.
+- **Automatic Discovery of Implementations**: Can discover implementations in external assemblies without static references.
+- **Extensible Discovery Strategy Mechanism**: Customize the discovery and registration process using strategies. 
 
 ## Why RetCon?
 
