@@ -108,7 +108,6 @@ Comprehensive documentation is planned but not yet available. A wiki will be cre
 The following tasks are still pending:
 
 - Comprehensive documentation needs to be written. [#9](https://github.com/GraniteStateHacker/GraniteStateUsersGroups.RetCons/issues/9)
-- Unit tests need to be implemented. [#7](https://github.com/GraniteStateHacker/GraniteStateUsersGroups.RetCons/issues/7)
 - A continuous integration pipeline needs to be built. [#6](https://github.com/GraniteStateHacker/GraniteStateUsersGroups.RetCons/issues/6)
 - A contribution guide needs to be written. [8](https://github.com/GraniteStateHacker/GraniteStateUsersGroups.RetCons/issues/8)
 - A publishing pipeline needs to be built to publish releases to nuget.org. (Depends on [#6](https://github.com/GraniteStateHacker/GraniteStateUsersGroups.RetCons/issues/6)) [#10](https://github.com/GraniteStateHacker/GraniteStateUsersGroups.RetCons/issues/10)
