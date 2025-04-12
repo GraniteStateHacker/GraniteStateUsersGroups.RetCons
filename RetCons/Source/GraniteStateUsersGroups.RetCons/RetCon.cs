@@ -27,7 +27,7 @@ public static partial class RetCon
     public class DefaultAttribute(Type @for) : RetConBaseAttribute(@for)
     {
         public override bool ChooseThisImplementation()
-            => !Context.Any(x => x.TargetImplementation == For && x.Attribute.ServiceKey == ServiceKey && x.Attribute.Priority > this.Priority && x.Attribute.ChooseThisImplementation());
+            => !Context.Any(x => x.Interface == For && x.Attribute.ServiceKey == ServiceKey && x.Attribute.Priority > this.Priority && x.Attribute.ChooseThisImplementation());
 
         public override void Register(IServiceCollection services, Type implementationType)
         {

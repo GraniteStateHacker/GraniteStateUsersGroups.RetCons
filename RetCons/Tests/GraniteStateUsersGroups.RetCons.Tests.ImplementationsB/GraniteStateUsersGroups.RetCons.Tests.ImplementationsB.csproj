@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Source\GraniteStateUsersGroups.RetCons.Web\GraniteStateUsersGroups.RetCons.Web.csproj" />
+    <ProjectReference Include="..\..\Source\GraniteStateUsersGroups.RetCons\GraniteStateUsersGroups.RetCons.csproj" />
+    <ProjectReference Include="..\GraniteStateUsersGroups.RetCons.Tests.Interfaces\GraniteStateUsersGroups.RetCons.Tests.Interfaces.csproj" />
+  </ItemGroup>
+
+</Project>

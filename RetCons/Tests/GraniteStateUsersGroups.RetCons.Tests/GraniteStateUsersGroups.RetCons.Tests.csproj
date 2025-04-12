@@ -1,0 +1,49 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.13.0" />
+    <PackageReference Include="NUnit" Version="4.3.2" />
+    <PackageReference Include="NUnit3TestAdapter" Version="5.0.0" />
+    <PackageReference Include="coverlet.collector" Version="6.0.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Implementations\GraniteStateUsersGroups.RetCons.Cache.MemoryCache\GraniteStateUsersGroups.RetCons.Cache.MemoryCache.csproj" />
+    <ProjectReference Include="..\..\Implementations\GraniteStateUsersGroups.RetCons.Cache.NullCache\GraniteStateUsersGroups.RetCons.Cache.NullCache.csproj" />
+    <ProjectReference Include="..\..\Implementations\GraniteStateUsersGroups.RetCons.Cache.Redis\GraniteStateUsersGroups.RetCons.Cache.Redis.csproj" />
+    <ProjectReference Include="..\..\Source\GraniteStateUsersGroups.RetCons.Web\GraniteStateUsersGroups.RetCons.Web.csproj" />
+    <ProjectReference Include="..\..\Source\GraniteStateUsersGroups.RetCons\GraniteStateUsersGroups.RetCons.csproj" />
+    <ProjectReference Include="..\GraniteStateUsersGroups.RetCons.Tests.ImplementationsB\GraniteStateUsersGroups.RetCons.Tests.ImplementationsB.csproj" />
+    <ProjectReference Include="..\GraniteStateUsersGroups.RetCons.Tests.Implementations\GraniteStateUsersGroups.RetCons.Tests.Implementations.csproj" />
+    <ProjectReference Include="..\GraniteStateUsersGroups.RetCons.Tests.Interfaces\GraniteStateUsersGroups.RetCons.Tests.Interfaces.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.NullCache.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="appsettings.Dependencyß.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="appsettings.DependencyA.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="appsettings.PreTest.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="appsettings.DefaultImplementation.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
