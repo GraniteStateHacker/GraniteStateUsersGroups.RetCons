@@ -10,7 +10,7 @@ using Microsoft.Extensions.Options;
 namespace GraniteStateUsersGroups.RetCons.Cache.MemoryCache;
 
 
-[RetCon.Default(typeof(IDistributedCache), Lifetime = ServiceLifetime.Singleton)]
+[RetCon.WhenConfigured(typeof(IDistributedCache),"MemoryCache", Lifetime = ServiceLifetime.Singleton)]
 
 [RetCon.Default(typeof(IDistributedCache), Lifetime = ServiceLifetime.Singleton, ServiceKey = "VolatileCache")]
 public class DistributedMemoryCacheWrapperForRetCons(IOptions<MemoryDistributedCacheOptions>? optionsAccessor) : MemoryDistributedCache(optionsAccessor!)
