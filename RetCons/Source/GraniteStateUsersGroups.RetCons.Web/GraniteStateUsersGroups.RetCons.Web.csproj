@@ -14,14 +14,14 @@
     <IsPackable>True</IsPackable>
     <Company>Granite State Users Groups, LLC</Company>
     <Description>RetCons Library adapter for ASP.NET 8.</Description>
-    <Copyright>(c) 2025</Copyright>
+    <Copyright>(c) 2025 Granite State Users Groups, LLC</Copyright>
     <PackageProjectUrl>https://github.com/GraniteStateHacker/GraniteStateUsersGroups.RetCons</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/GraniteStateHacker/GraniteStateUsersGroups.RetCons</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageTags>Dependency Injection; Retroactive Continuity; SOLID Principles; Clean Architecture; Service Composition; Dynamic Registration; Modular Design; Kubernetes-Friendly; Aspire.NET; Runtime Configuration; Flexible Implementations; Attribute-Based DI; .NET Utilities; Microservices Alternative; Decoupled Dependencies</PackageTags>
+    <PackageTags>Dependency Injection; Retroactive Continuity; SOLID Principles; Clean Architecture; Service Composition; Dynamic Registration; Modular Design; Kubernetes-Friendly; Aspire.NET; Runtime Configuration; Flexible Implementations; Attribute-Based DI; .NET Utilities; Microservices Alternative; Decoupled Dependencies; Autofac; Castle Windsor; Injector; Dryloc</PackageTags>
     <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
-    <Version>1.0.2</Version>
+    <Version>1.0.3</Version>
   </PropertyGroup>
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />

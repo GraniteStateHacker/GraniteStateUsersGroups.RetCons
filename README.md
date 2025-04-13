@@ -143,3 +143,5 @@ Start redefining your dependency injection story with RetCon today!
 1.0.1 - Implement assembly discovery strategy that demands signed assemblies.
 
 1.0.2 - Resolves a bug where the wrong implementation could be registered.
+
+1.0.3 - Nuspec fix (non-functional, "cosmetic" change only)
