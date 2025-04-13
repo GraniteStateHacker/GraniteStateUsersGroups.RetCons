@@ -2,7 +2,6 @@
 
 The RetCons library is a lightweight but powerful .NET utility designed to simplify and enhance dependency injection by allowing developers to retroactively define and manage service implementations. Inspired by the concept of retroactive continuity in storytelling, RetCons enables dynamic and flexible service registration using attributes. It promotes SOLID Principles and Clean Architecture to the extent of being able to completely decouple dependencies right out of your build pipeline and compose them at runtime instead.
 
-RetCons was created and is maintained as an OSS project by [Jim Wilcox, Modern Application Architect](https://www.linkedin.com/in/jimwilcox2/) and [Microsoft MVP in Developer Tools](https://mvp.microsoft.com/en-US/MVP/profile/70a2a0ca-6250-e911-a995-000d3a1362e3).  
 
 ## Features
 
@@ -132,7 +131,12 @@ This project is licensed under the MIT License. See the [LICENSE](https://raw.gi
 
 ## Acknowledgments
 
-RetCon is developed and maintained by the Granite State Users Groups. Special thanks to all contributors and the open-source community for their support.
+RetCon is developed and maintained by Granite State Users Groups, LLC. Special thanks to all contributors and the open-source community for their support.
+
+RetCons was created and is maintained as an OSS project by [Jim Wilcox, Modern Application Architect](https://www.linkedin.com/in/jimwilcox2/) and [Microsoft MVP in Developer Tools](https://mvp.microsoft.com/en-US/MVP/profile/70a2a0ca-6250-e911-a995-000d3a1362e3). 
+
+Additional contributors are invited, and contributions will be welcomed for evaluation and appreciated in acceptance.
+
 
 ---
 
@@ -147,3 +151,5 @@ Start redefining your dependency injection story with RetCon today!
 1.0.2 - Resolves a bug where the wrong implementation could be registered.
 
 1.0.3 - Nuspec fix (non-functional, "cosmetic" change only)
+
+
