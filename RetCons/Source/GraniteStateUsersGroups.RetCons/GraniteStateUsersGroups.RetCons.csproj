@@ -16,12 +16,12 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/GraniteStateHacker/GraniteStateUsersGroups.RetCons</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageTags>Dependency Injection; Retroactive Continuity; SOLID Principles; Clean Architecture; Service Composition; Dynamic Registration; Modular Design; Kubernetes-Friendly; Aspire.NET; Runtime Configuration; Flexible Implementations; Attribute-Based DI; .NET Utilities; Microservices Alternative; Decoupled Dependencies</PackageTags>
+    <PackageTags>Dependency Injection; Retroactive Continuity; SOLID Principles; Clean Architecture; Service Composition; Dynamic Registration; Modular Design; Kubernetes-Friendly; Aspire.NET; Runtime Configuration; Flexible Implementations; Attribute-Based DI; .NET Utilities; Microservices Alternative; Decoupled Dependencies; Autofac; Castle Windsor; Injector; Dryloc</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
     <AnalysisLevel>6.0-recommended</AnalysisLevel>
-    <Version>1.0.2</Version>
+    <Version>1.0.3</Version>
   </PropertyGroup>
 
   <ItemGroup>
