@@ -29,6 +29,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="appsettings.NullDefault.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="appsettings.NullCache.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
