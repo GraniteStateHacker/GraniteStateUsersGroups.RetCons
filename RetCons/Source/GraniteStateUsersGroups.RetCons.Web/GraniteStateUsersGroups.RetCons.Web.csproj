@@ -21,7 +21,7 @@
     <RepositoryType>git</RepositoryType>
     <PackageTags>Dependency Injection; Retroactive Continuity; SOLID Principles; Clean Architecture; Service Composition; Dynamic Registration; Modular Design; Kubernetes-Friendly; Aspire.NET; Runtime Configuration; Flexible Implementations; Attribute-Based DI; .NET Utilities; Microservices Alternative; Decoupled Dependencies; Autofac; Castle Windsor; Injector; Dryloc</PackageTags>
     <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
-    <Version>1.0.3</Version>
+    <Version>1.0.4</Version>
   </PropertyGroup>
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
