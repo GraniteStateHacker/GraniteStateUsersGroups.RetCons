@@ -6,15 +6,15 @@ using System.Reflection;
 
 namespace GraniteStateUsersGroups.RetCons;
 
-public static partial class RetCon
+public static class RetCon
 {
 
 
-    public static RegistrationContext Context { get; } = [];
+    public static RegistrationContext Context { get; set; } = []; 
 
-    public abstract class RetConBaseAttribute(Type @for) : Attribute
+    public abstract class RetConBaseAttribute(Type? @for) : Attribute
     {
-        public Type For { get; init; } = @for;
+        public Type? For { get; init; } = @for;
         public ServiceLifetime Lifetime { get; init; } = ServiceLifetime.Transient;
         public object? ServiceKey { get; init; }
         public uint Priority { get; init; }
@@ -24,14 +24,14 @@ public static partial class RetCon
     }
 
     [AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = true)]
-    public class DefaultAttribute(Type @for) : RetConBaseAttribute(@for)
+    public class DefaultAttribute(Type? @for) : RetConBaseAttribute(@for)
     {
         public override bool ChooseThisImplementation()
-            => !Context.Any(x => x.Interface == For && x.Attribute.ServiceKey == ServiceKey && x.Attribute.Priority > this.Priority && x.Attribute.ChooseThisImplementation());
+            => !Context.Any(x => (x.Interface != null && x.Interface == For && x.Attribute.ServiceKey == ServiceKey) && x.Attribute.Priority > this.Priority && x.Attribute.ChooseThisImplementation());
 
         public override void Register(IServiceCollection services, Type implementationType)
         {
-            if (ChooseThisImplementation())
+            if (ChooseThisImplementation() && For != null)
             {
                 var serviceDescriptor = new ServiceDescriptor(For, ServiceKey, implementationType, Lifetime);
                 services.Add(serviceDescriptor);
@@ -42,15 +42,18 @@ public static partial class RetCon
     [AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = true)]
     public class ForceAttribute : RetConBaseAttribute
     {
-        public ForceAttribute(Type @for) : base(@for)
+        public ForceAttribute(Type? @for) : base(@for)
         {
             Priority = uint.MaxValue;
         }
 
         public override void Register(IServiceCollection services, Type implementationType)
         {
-            var serviceDescriptor = new ServiceDescriptor(For, ServiceKey, implementationType, Lifetime);
-            services.Add(serviceDescriptor);
+            if (For != null)
+            {
+                var serviceDescriptor = new ServiceDescriptor(For, ServiceKey, implementationType, Lifetime);
+                services.Add(serviceDescriptor);
+            }
         }
 
         public override bool ChooseThisImplementation() => true;
@@ -61,7 +64,7 @@ public static partial class RetCon
     {
         public string RequiredConfigurationKey { get; init; }
 
-        public WhenConfiguredAttribute(Type @for, string requiredConfigurationKey) : base(@for)
+        public WhenConfiguredAttribute(Type? @for, string requiredConfigurationKey) : base(@for)
         {
             RequiredConfigurationKey = requiredConfigurationKey;
             Priority = 1;
@@ -69,8 +72,11 @@ public static partial class RetCon
 
         public override void Register(IServiceCollection services, Type implementationType)
         {
-            var serviceDescriptor = new ServiceDescriptor(For, ServiceKey, implementationType, Lifetime);
-            services.Add(serviceDescriptor);
+            if (For != null)
+            {
+                var serviceDescriptor = new ServiceDescriptor(For, ServiceKey, implementationType, Lifetime);
+                services.Add(serviceDescriptor);
+            }
         }
 
         public override bool ChooseThisImplementation()
@@ -86,7 +92,7 @@ public static partial class RetCon
     {
         public string EnvironmentName { get; init; }
 
-        public ForEnvironmentAttribute(Type @for, string environmentName) : base(@for)
+        public ForEnvironmentAttribute(Type? @for, string environmentName) : base(@for)
         {
             EnvironmentName = environmentName;
             Priority = 1;
@@ -94,8 +100,11 @@ public static partial class RetCon
 
         public override void Register(IServiceCollection services, Type implementationType)
         {
-            var serviceDescriptor = new ServiceDescriptor(For, ServiceKey, implementationType, Lifetime);
-            services.Add(serviceDescriptor);
+            if (For != null)
+            {
+                var serviceDescriptor = new ServiceDescriptor(For, ServiceKey, implementationType, Lifetime);
+                services.Add(serviceDescriptor);
+            }
         }
 
         public override bool ChooseThisImplementation()

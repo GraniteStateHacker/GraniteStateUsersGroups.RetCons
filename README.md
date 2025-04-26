@@ -92,7 +92,7 @@ These examples illustrate how to use `ISelfConfig` and `ISelfConfigAfterBuild` t
      }
      ```
 
-   These examples illustrate how to use `ISelfConfig` and `ISelfConfigAfterBuild` to inject custom logic during the application’s configuration and post-build phases.
+   These examples illustrate how to use `ISelfConfig` and `ISelfConfigAfterBuild` to inject custom logic during the application’s configuration and post-build phases.  Note, also, that a RetCon with a `null` Interface (`For`) property can be used to execute configuration without actually registering any implementation if desired..
 
 RetCon provides an extensible strategy mechanism to customize the discovery and registration process. You can implement your own strategy by implementing delegate `RetConDiscoveryStrategy` and registering it:
 ### Example Projects
@@ -145,3 +145,5 @@ Start redefining your dependency injection story with RetCon today!
 1.0.2 - Resolves a bug where the wrong implementation could be registered.
 
 1.0.3 - Nuspec fix (non-functional, "cosmetic" change only)
+
+1.0.4 - Allow `null` type for `For` property in RetCon attributes. This allows for configuration without registering an implementation. 

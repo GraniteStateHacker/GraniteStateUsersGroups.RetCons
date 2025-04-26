@@ -15,6 +15,7 @@ public static class RetConComposer
     public static IHostApplicationBuilder RegisterRetConServices(this IHostApplicationBuilder builder, AssemblyDiscoveryStrategy discoveryStrategy)
     {
         ArgumentNullException.ThrowIfNull(builder);
+        RetCon.Context = [];
         RetCon.Context.Builder = builder;
         RegisterBaseServices();
         InitializeRetCons(discoveryStrategy);
@@ -82,12 +83,16 @@ public static class RetConComposer
         var serviceLifetime = attribute.Lifetime;
 
         var implementationName = targetImplementation.AssemblyQualifiedName;
-        var interfaceName = set.Interface.AssemblyQualifiedName;
         if (attribute.ChooseThisImplementation())
         {
-            attribute.Register(container, targetImplementation);
-            RetCon.Context.RegisteredRetCons.Add(new RetConSet(set.Interface, attribute, targetImplementation));
+            if (attribute.For != null)
+            {
+                attribute.Register(container, targetImplementation);
+            }
+
+            var interfaceName = set.Interface?.AssemblyQualifiedName ?? "[CONFIGURATION ONLY, REGISTRATION SKIPPED]";
             LogRetConAdded(logger, attribute.GetType().Name, implementationName, interfaceName, serviceLifetime, null);
+            RetCon.Context.RegisteredRetCons.Add(new RetConSet(set.Interface, attribute, targetImplementation));
         }
     }
 
